@@ -34,6 +34,8 @@ print(topic_list)
 
 topic = input("Pick a quote topic: ")
 while topic not in topic_list:
+    print("Topic not available. Please pick a valid topic: ")
+    print(topic_list)
     topic = input("Pick a quote topic: ")
 else:
     quote_page = ('https://www.goodreads.com/quotes/tag/' + topic)
