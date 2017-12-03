@@ -25,13 +25,25 @@ def parseQuotes(link):
         return quotes
 
 
-# starting page, adjust url after /tag/ to change quote type
-quote_page = 'https://www.goodreads.com/quotes/tag/positive-thinking'
-quotes = parseQuotes(quote_page)
+# picking the topic of quotes to scrape (from goodreads.com)
+topic_list = ["love", "life", "inspirational", "humor", "philosophy", "truth", "god", "wisdom", "inspirational-quotes", "happiness", "romance", "hope", "death", "quotes", "poetry", "faith", "writing", "inspiration", "religion", "knowledge", "success", "education", "relationships", "motivational", "life-lessons", "time", "science", "funny", "books", "spirituality"]
+
+
+print("List of topics:")
+print(topic_list)
+
+topic = input("Pick a quote topic: ")
+while topic not in topic_list:
+    topic = input("Pick a quote topic: ")
+else:
+    quote_page = ('https://www.goodreads.com/quotes/tag/' + topic)
+
+# running the parseQuotes function on the quote page URL created from user topic input
+quotes=parseQuotes(quote_page)
 
 # writes all quotes in list to a text file
 print("Writing quotes to file")
-file = open("quoteList.txt", "w")
+file = open((topic+"_quoteList.txt"), "w")
 for item in quotes:
     file.write("%s\n" % item)
 file.close()
